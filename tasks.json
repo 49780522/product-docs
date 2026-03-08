@@ -1,0 +1,139 @@
+{
+  "version": "1.0.0",
+  "project": "团队任务管理系统",
+  "source_prd": "prd.md",
+  "total_tasks": 8,
+  "estimated_total_hours": 80,
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "type": "coding",
+      "title": "项目初始化和技术选型",
+      "description": "初始化前端和后端项目，配置开发环境，确定技术栈版本，搭建基础目录结构",
+      "acceptance_criteria": [
+        "前端项目使用 React + TypeScript + Vite 初始化",
+        "后端项目使用 Node.js + Express + TypeScript 初始化",
+        "配置 ESLint、Prettier、TypeScript 严格模式",
+        "目录结构符合最佳实践"
+      ],
+      "estimated_hours": 8,
+      "priority": "high",
+      "dependencies": [],
+      "assign_to": "codex-1"
+    },
+    {
+      "id": "TASK-002",
+      "type": "coding",
+      "title": "数据库设计和任务模型",
+      "description": "设计数据库 Schema，创建任务、用户、项目等核心表结构，实现数据模型层",
+      "acceptance_criteria": [
+        "PostgreSQL 数据库设计完成",
+        "Task、User、Project 三个核心表",
+        "使用 ORM (Prisma/TypeORM) 定义模型",
+        "包含必要的索引和约束"
+      ],
+      "estimated_hours": 8,
+      "priority": "high",
+      "dependencies": ["TASK-001"],
+      "assign_to": "codex-1"
+    },
+    {
+      "id": "TASK-003",
+      "type": "coding",
+      "title": "任务 CRUD API 开发",
+      "description": "实现任务创建、读取、更新、删除的 RESTful API 接口",
+      "acceptance_criteria": [
+        "POST /api/tasks 创建任务",
+        "GET /api/tasks 获取任务列表（支持筛选、分页）",
+        "GET /api/tasks/:id 获取任务详情",
+        "PUT /api/tasks/:id 更新任务",
+        "DELETE /api/tasks/:id 删除任务",
+        "API 返回标准 JSON 格式，包含错误处理"
+      ],
+      "estimated_hours": 12,
+      "priority": "high",
+      "dependencies": ["TASK-002"],
+      "assign_to": "codex-1"
+    },
+    {
+      "id": "TASK-004",
+      "type": "coding",
+      "title": "基础列表视图开发",
+      "description": "实现任务列表页面，支持表格展示、排序、基础筛选",
+      "acceptance_criteria": [
+        "任务列表页面 UI 实现",
+        "支持按状态、负责人、优先级筛选",
+        "支持按截止日期排序",
+        "响应式设计，适配移动端"
+      ],
+      "estimated_hours": 10,
+      "priority": "high",
+      "dependencies": ["TASK-003"],
+      "assign_to": "claude-1"
+    },
+    {
+      "id": "TASK-005",
+      "type": "coding",
+      "title": "看板视图开发",
+      "description": "实现拖拽式看板视图，支持任务状态拖拽变更",
+      "acceptance_criteria": [
+        "三列看板：待办/进行中/已完成",
+        "支持拖拽任务变更状态",
+        "实时同步状态变更",
+        "每个卡片显示任务标题、负责人、截止日期"
+      ],
+      "estimated_hours": 12,
+      "priority": "high",
+      "dependencies": ["TASK-004"],
+      "assign_to": "claude-1"
+    },
+    {
+      "id": "TASK-006",
+      "type": "coding",
+      "title": "用户系统和任务分配",
+      "description": "实现用户登录、任务分配功能",
+      "acceptance_criteria": [
+        "用户登录/注册功能",
+        "JWT Token 认证",
+        "任务分配给用户",
+        "用户只能看到自己负责的任务（权限控制）"
+      ],
+      "estimated_hours": 10,
+      "priority": "medium",
+      "dependencies": ["TASK-003"],
+      "assign_to": "codex-1"
+    },
+    {
+      "id": "TASK-007",
+      "type": "coding",
+      "title": "飞书通知集成",
+      "description": "集成飞书机器人，实现任务分配和截止提醒通知",
+      "acceptance_criteria": [
+        "飞书 Webhook 配置",
+        "任务分配时发送通知",
+        "截止前 24 小时发送提醒",
+        "支持 @ 提及用户"
+      ],
+      "estimated_hours": 8,
+      "priority": "medium",
+      "dependencies": ["TASK-006"],
+      "assign_to": "codex-1"
+    },
+    {
+      "id": "TASK-008",
+      "type": "coding",
+      "title": "部署和上线",
+      "description": "配置生产环境，Docker 容器化，部署到服务器",
+      "acceptance_criteria": [
+        "Dockerfile 和 docker-compose.yml",
+        "Nginx 反向代理配置",
+        "环境变量配置（开发/生产）",
+        "部署文档"
+      ],
+      "estimated_hours": 12,
+      "priority": "medium",
+      "dependencies": ["TASK-005", "TASK-007"],
+      "assign_to": "codex-1"
+    }
+  ]
+}
